@@ -36,9 +36,11 @@ public class Pool<T> {
 	private T create() {
 		T item = creator.create();
 		creator.clean(item);
+		createCount++;
 		return item;
 	}
 
+	private int createCount;
 	private final List<T> pool;
 	private final PoolHandler<T> creator;
 
@@ -95,6 +97,10 @@ public class Pool<T> {
 		pool.clear();
 	}
 
+	public int createdObjectsCount() {
+		return this.createCount;
+	}
+
 	public int linkedObjectsCount() {
 		return pool.size();
 	}
@@ -130,6 +136,12 @@ public class Pool<T> {
 			public void flush() {
 				synchronized (lock) {
 					backing.flush();
+				}
+			}
+
+			public int createdObjectsCount() {
+				synchronized (lock) {
+					return backing.createdObjectsCount();
 				}
 			}
 
