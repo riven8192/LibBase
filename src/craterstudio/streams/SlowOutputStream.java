@@ -35,7 +35,7 @@ public class SlowOutputStream extends AbstractOutputStream
                      break;
                   }
 
-                  int latency = (int) EasyMath.lerp((float) Math.pow(Math.random(), 2.0), minLatency, maxLatency);
+                  int latency = (int) EasyMath.lerp(minLatency, maxLatency, (float) Math.pow(Math.random(), 2.0));
                   while (Clock.now() - p.timestamp < latency)
                   {
                      HighLevel.sleep(1);

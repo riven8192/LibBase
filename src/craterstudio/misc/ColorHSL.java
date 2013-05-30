@@ -65,9 +65,9 @@ public class ColorHSL
       //
 
       float[] cHSL = new float[3];
-      cHSL[0] = EasyMath.lerp(t, aHSL[0], bHSL[0]);
-      cHSL[1] = EasyMath.lerp(t, aHSL[1], bHSL[1]);
-      cHSL[2] = EasyMath.lerp(t, aHSL[2], bHSL[2]);
+      cHSL[0] = EasyMath.lerp(aHSL[0], bHSL[0], t);
+      cHSL[1] = EasyMath.lerp(aHSL[1], bHSL[1], t);
+      cHSL[2] = EasyMath.lerp(aHSL[2], bHSL[2], t);
 
       //
 

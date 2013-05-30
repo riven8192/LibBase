@@ -138,7 +138,7 @@ public class EasyMath
     * LERP
     */
 
-   public static final float lerp(float t, float a, float b)
+   public static final float lerp(float a, float b, float t)
    {
       return a + t * (b - a);
    }
@@ -203,12 +203,12 @@ public class EasyMath
 
    public static final float interpolate(float cur, float min, float max, float startValue, float endValue)
    {
-      return lerp(invLerp(cur, min, max), startValue, endValue);
+      return lerp(startValue, endValue, invLerp(cur, min, max));
    }
 
    public static final float interpolate(float cur, float min, float max, float startValue, float endValue, int transform)
    {
-      return lerp(transform(invLerp(cur, min, max), transform), startValue, endValue);
+      return lerp(startValue, endValue, transform(invLerp(cur, min, max), transform));
    }
 
    public static final float interpolateWithCap(float cur, float min, float max, float startValue, float endValue)
@@ -233,9 +233,9 @@ public class EasyMath
          ne = se + nw - sw;
 
       // calculate interpolation of selected triangle
-      float n = lerp(x, nw, ne);
-      float s = lerp(x, sw, se);
-      return lerp(z, n, s);
+      float n = lerp(nw, ne, x);
+      float s = lerp(sw, se, x);
+      return lerp(n, s, z);
    }
 
    /**
